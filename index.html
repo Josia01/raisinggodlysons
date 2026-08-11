@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitekaro Group Limited — Grown, Milled, Moved</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --loam:#211510;
+    --loam-2:#2c1c14;
+    --paper:#f2e8d5;
+    --paper-dim:#e6d8ba;
+    --paper-line:#c9b78f;
+    --maize:#c8963e;
+    --maize-bright:#e3ac4f;
+    --pine:#2f4a3c;
+    --pine-bright:#3e6350;
+    --steel:#3d5c74;
+    --steel-bright:#5580a0;
+    --stamp:#8b3a2b;
+    --vuna-green:#1c3428;
+    --vuna-lime:#a8c93e;
+    --ink:#211510;
+    --ink-soft:#5a4a3c;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    overflow-x:hidden;
+  }
+  .mono{font-family:'Space Mono', monospace;}
+  .display{font-family:'Fraunces', serif;}
+
+  ::selection{ background:var(--maize); color:var(--loam); }
+
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 40px;
+    background:rgba(33,21,16,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(242,232,213,0.12);
+  }
+  .logo-mark{
+    display:flex; align-items:center; gap:10px;
+    color:var(--paper);
+  }
+  .logo-box{
+    width:34px; height:34px; border:1.5px solid var(--maize-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono', monospace; font-weight:700; font-size:12px;
+    color:var(--maize-bright); transform:rotate(-2deg);
+  }
+  .logo-text{font-family:'Fraunces', serif; font-size:19px; font-weight:600; letter-spacing:0.01em;}
+  .logo-text span{color:var(--maize-bright);}
+  nav ul{list-style:none; display:flex; gap:34px;}
+  nav a{
+    color:var(--paper-dim); font-size:13px; font-family:'Space Mono', monospace;
+    text-transform:uppercase; letter-spacing:0.06em;
+    padding-bottom:3px; border-bottom:1px solid transparent;
+    transition:color .2s, border-color .2s;
+  }
+  nav a:hover{color:var(--maize-bright); border-color:var(--maize-bright);}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(200,150,62,0.18), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 90% 10%, rgba(61,92,116,0.16), transparent 60%),
+      var(--loam);
+    min-height:100vh;
+    padding:150px 40px 90px;
+    position:relative;
+    display:flex; flex-direction:column; align-items:center;
+    color:var(--paper);
+  }
+  .hero-eyebrow{
+    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.14em;
+    color:var(--maize-bright); text-transform:uppercase; margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero-eyebrow::before{content:''; width:26px; height:1px; background:var(--maize-bright);}
+  .hero h1{
+    font-size:clamp(38px, 6.4vw, 84px);
+    font-weight:600; line-height:1.03; text-align:center;
+    max-width:1000px; letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:italic; font-weight:300; color:var(--maize-bright);
+  }
+  .hero-sub{
+    max-width:560px; text-align:center; margin:26px auto 46px;
+    font-size:17px; line-height:1.6; color:var(--paper-dim);
+  }
+  .hero-ctas{display:flex; gap:16px; margin-bottom:70px; flex-wrap:wrap; justify-content:center;}
+  .btn{
+    padding:13px 26px; font-family:'Space Mono', monospace; font-size:12.5px;
+    text-transform:uppercase; letter-spacing:0.08em;
+    border:1px solid var(--maize-bright); transition:all .2s;
+    cursor:pointer; background:none;
+  }
+  .btn-fill{ background:var(--maize-bright); color:var(--loam); }
+  .btn-fill:hover{ background:var(--paper); border-color:var(--paper); }
+  .btn-line{ color:var(--paper); }
+  .btn-line:hover{ background:rgba(242,232,213,0.08); }
+
+  /* ---------- WAYBILL CARD ---------- */
+  .waybill{
+    width:100%; max-width:920px;
+    background:var(--paper);
+    color:var(--ink);
+    position:relative;
+    box-shadow:0 40px 80px -20px rgba(0,0,0,0.55);
+    transform:rotate(-0.6deg);
+    border:1px solid var(--paper-line);
+  }
+  .waybill-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    padding:26px 30px 20px; border-bottom:2px dashed var(--paper-line);
+  }
+  .wb-title{font-family:'Fraunces', serif; font-size:22px; font-weight:600;}
+  .wb-sub{font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft); margin-top:4px; text-transform:uppercase; letter-spacing:0.06em;}
+  .stamp{
+    font-family:'Space Mono', monospace; font-weight:700; font-size:12px;
+    color:var(--stamp); border:2px solid var(--stamp); padding:6px 12px;
+    transform:rotate(6deg); letter-spacing:0.08em; white-space:nowrap;
+    border-radius:3px;
+  }
+  .wb-route{
+    display:flex; align-items:center; gap:14px;
+    padding:20px 30px; font-family:'Space Mono', monospace; font-size:12.5px;
+    color:var(--ink-soft); border-bottom:2px dashed var(--paper-line);
+    flex-wrap:wrap;
+  }
+  .wb-route b{color:var(--ink); font-weight:700;}
+  .route-line{flex:1; min-width:60px; height:1px; background:repeating-linear-gradient(90deg, var(--ink-soft) 0 6px, transparent 6px 11px); position:relative;}
+  .route-line::after{content:'→'; position:absolute; right:-4px; top:-9px; color:var(--ink-soft);}
+
+  .wb-table{width:100%; border-collapse:collapse;}
+  .wb-table th{
+    text-align:left; font-family:'Space Mono', monospace; font-size:10.5px;
+    text-transform:uppercase; letter-spacing:0.07em; color:var(--ink-soft);
+    padding:14px 30px 8px; font-weight:400;
+  }
+  .wb-table td{
+    padding:10px 30px; font-size:14px; border-top:1px solid var(--paper-line);
+  }
+  .wb-table tr:last-child td{padding-bottom:20px;}
+  .cargo-code{font-family:'Space Mono', monospace; font-size:12px; color:var(--stamp); font-weight:700;}
+  .cargo-tag{
+    font-family:'Space Mono', monospace; font-size:10px; text-transform:uppercase;
+    padding:3px 8px; border:1px solid var(--ink-soft); color:var(--ink-soft);
+    letter-spacing:0.04em; white-space:nowrap;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:110px 40px;}
+  .section-inner{max-width:1140px; margin:0 auto;}
+  .eyebrow{
+    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--stamp); margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:26px; height:1px; background:var(--stamp);}
+  .section-title{
+    font-family:'Fraunces', serif; font-size:clamp(30px,4vw,48px); font-weight:600;
+    max-width:680px; line-height:1.08; margin-bottom:20px;
+  }
+  .section-lede{max-width:560px; color:var(--ink-soft); font-size:16px; line-height:1.65;}
+
+  /* ---------- DIVISIONS LEDGER ---------- */
+  .divisions{background:var(--paper-dim);}
+  .ledger{border-top:2px solid var(--ink); margin-top:60px;}
+  .ledger-row{
+    display:grid; grid-template-columns:70px 1fr 1.4fr 200px;
+    gap:24px; align-items:start;
+    padding:34px 0; border-bottom:1px solid var(--paper-line);
+    transition:background .25s;
+  }
+  .ledger-row:hover{background:rgba(200,150,62,0.08);}
+  .ledger-num{font-family:'Space Mono', monospace; font-size:14px; color:var(--ink-soft); padding-top:4px;}
+  .ledger-title{font-family:'Fraunces', serif; font-size:26px; font-weight:600;}
+  .ledger-title .accent{display:block; font-family:'Space Mono', monospace; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-top:6px;}
+  .ledger-desc{color:var(--ink-soft); font-size:15px; line-height:1.65; padding-top:2px;}
+  .ledger-items{display:flex; flex-direction:column; gap:8px; align-items:flex-end;}
+  .item-chip{
+    font-family:'Space Mono', monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:0.04em; padding:5px 10px; white-space:nowrap;
+    border:1px solid currentColor;
+  }
+  .r1 .ledger-num, .r1 .item-chip{color:var(--maize); }
+  .r2 .ledger-num, .r2 .item-chip{color:var(--pine); }
+  .r3 .ledger-num, .r3 .item-chip{color:var(--vuna-lime); background:var(--vuna-green);}
+  .r4 .ledger-num, .r4 .item-chip{color:var(--steel); }
+
+  @media (max-width: 800px){
+    .ledger-row{grid-template-columns:1fr; gap:10px;}
+    .ledger-items{align-items:flex-start; flex-direction:row; flex-wrap:wrap;}
+  }
+
+  /* ---------- ROUTE / REACH ---------- */
+  .reach{background:var(--loam); color:var(--paper);}
+  .reach .eyebrow, .reach .eyebrow::before{color:var(--maize-bright);}
+  .reach .section-title{color:var(--paper);}
+  .reach .section-lede{color:var(--paper-dim);}
+  .reach-map{
+    margin-top:60px; display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:20px; position:relative; padding:30px 0;
+  }
+  .reach-map::before{
+    content:''; position:absolute; top:50%; left:0; right:0; height:1px;
+    background:repeating-linear-gradient(90deg, rgba(242,232,213,0.35) 0 8px, transparent 8px 16px);
+    z-index:0;
+  }
+  .stop{
+    position:relative; z-index:1; text-align:center; flex:1; min-width:140px;
+  }
+  .stop-dot{
+    width:14px; height:14px; border-radius:50%; background:var(--maize-bright);
+    margin:0 auto 14px; border:3px solid var(--loam); box-shadow:0 0 0 1.5px var(--maize-bright);
+  }
+  .stop:nth-child(2) .stop-dot{background:var(--steel-bright); box-shadow:0 0 0 1.5px var(--steel-bright);}
+  .stop:nth-child(3) .stop-dot{background:var(--pine-bright); box-shadow:0 0 0 1.5px var(--pine-bright);}
+  .stop-label{font-family:'Fraunces', serif; font-size:19px; font-weight:600;}
+  .stop-sub{font-family:'Space Mono', monospace; font-size:11px; color:var(--paper-dim); margin-top:5px; text-transform:uppercase; letter-spacing:0.04em;}
+
+  .fleet-stats{
+    margin-top:70px; display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:rgba(242,232,213,0.15);
+    border:1px solid rgba(242,232,213,0.15);
+  }
+  .fleet-stat{background:var(--loam); padding:34px 26px;}
+  .fleet-stat .num{font-family:'Fraunces', serif; font-size:44px; font-weight:600; color:var(--maize-bright);}
+  .fleet-stat .lbl{font-family:'Space Mono', monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--paper-dim); margin-top:8px;}
+  @media (max-width:700px){ .fleet-stats{grid-template-columns:1fr;} }
+
+  /* ---------- VUNA SPOTLIGHT ---------- */
+  .vuna{
+    background:var(--vuna-green);
+    color:#eef4e2;
+    position:relative; overflow:hidden;
+  }
+  .vuna::after{
+    content:''; position:absolute; right:-120px; top:-120px; width:420px; height:420px;
+    border-radius:50%; background:radial-gradient(circle, rgba(168,201,62,0.22), transparent 70%);
+  }
+  .vuna-inner{
+    max-width:1140px; margin:0 auto; position:relative; z-index:1;
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+  }
+  .vuna .eyebrow, .vuna .eyebrow::before{color:var(--vuna-lime);}
+  .vuna-title{font-family:'Fraunces', serif; font-size:clamp(28px,3.6vw,42px); font-weight:600; line-height:1.1; margin-bottom:18px;}
+  .vuna-title em{color:var(--vuna-lime); font-style:italic; font-weight:300;}
+  .vuna-desc{font-size:16px; line-height:1.7; color:#cfe0bb; margin-bottom:30px; max-width:460px;}
+  .vuna-link{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Space Mono', monospace; font-size:12.5px; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--vuna-lime); border-bottom:1px solid var(--vuna-lime);
+    padding-bottom:4px;
+  }
+  .vuna-panel{
+    background:#16281e; border:1px solid rgba(168,201,62,0.3);
+    padding:30px;
+  }
+  .vuna-panel-head{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Space Mono', monospace; font-size:11px; text-transform:uppercase;
+    color:#9ab588; letter-spacing:0.05em; margin-bottom:22px; padding-bottom:16px;
+    border-bottom:1px solid rgba(168,201,62,0.2);
+  }
+  .vuna-feature{display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(168,201,62,0.12);}
+  .vuna-feature:last-child{border-bottom:none;}
+  .vuna-feature-mark{font-family:'Space Mono', monospace; color:var(--vuna-lime); font-size:13px; padding-top:2px;}
+  .vuna-feature-text b{display:block; font-size:15px; margin-bottom:3px; font-weight:600;}
+  .vuna-feature-text span{font-size:13.5px; color:#a9c295; line-height:1.5;}
+  @media (max-width:840px){ .vuna-inner{grid-template-columns:1fr;} }
+
+  /* ---------- ABOUT ---------- */
+  .about-inner{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; max-width:1140px; margin:0 auto; align-items:start;
+  }
+  .about-list{margin-top:36px; display:flex; flex-direction:column; gap:0;}
+  .about-item{
+    padding:22px 0; border-top:1px solid var(--paper-line);
+    display:flex; gap:20px; align-items:baseline;
+  }
+  .about-item:last-child{border-bottom:1px solid var(--paper-line);}
+  .about-item .yr{font-family:'Space Mono', monospace; font-size:12px; color:var(--stamp); min-width:64px;}
+  .about-item p{font-size:15px; color:var(--ink-soft); line-height:1.6;}
+  .about-item b{color:var(--ink); font-weight:600;}
+  @media (max-width:840px){ .about-inner{grid-template-columns:1fr;} }
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--loam); color:var(--paper);}
+  .contact-waybill{
+    max-width:820px; margin:60px auto 0; background:var(--paper); color:var(--ink);
+    padding:0; border:1px solid var(--paper-line);
+  }
+  .cw-head{
+    padding:30px 34px; border-bottom:2px dashed var(--paper-line);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .cw-head h3{font-family:'Fraunces', serif; font-size:26px; font-weight:600;}
+  .cw-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--paper-line);
+  }
+  .cw-cell{background:var(--paper); padding:26px 34px;}
+  .cw-cell .k{font-family:'Space Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); margin-bottom:8px;}
+  .cw-cell .v{font-size:15px; font-weight:500;}
+  .cw-cell .v a:hover{color:var(--stamp);}
+  @media (max-width:700px){ .cw-grid{grid-template-columns:1fr;} }
+
+  footer{
+    max-width:1140px; margin:70px auto 0; padding-top:26px; border-top:1px solid rgba(242,232,213,0.15);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-family:'Space Mono', monospace; font-size:11.5px; color:var(--paper-dim); text-transform:uppercase; letter-spacing:0.04em;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  @media (max-width:700px){
+    header{padding:16px 20px;}
+    nav ul{gap:18px;}
+    nav a{font-size:11px;}
+    section{padding:80px 20px;}
+    .wb-table{font-size:12px;}
+    .wb-table th, .wb-table td{padding-left:18px; padding-right:18px;}
+    .waybill-head, .wb-route{padding-left:18px; padding-right:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">
+    <div class="logo-box">MG</div>
+    <div class="logo-text">Mitekaro <span>Group</span></div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#divisions">Divisions</a></li>
+      <li><a href="#vuna">Vuna Marketplace</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow mono">Iringa, Tanzania · Est. Family Enterprise</div>
+  <h1 class="display">Grown, milled,<br><em>and moved</em> — under one roof.</h1>
+  <p class="hero-sub">Mitekaro Group Limited exports food and timber, builds the digital marketplace farmers sell on, and runs the trucks that carry all of it — from our fields in Iringa to ports and buyers beyond.</p>
+  <div class="hero-ctas">
+    <a href="#divisions" class="btn btn-fill">View our cargo</a>
+    <a href="#contact" class="btn btn-line">Request a quote</a>
+  </div>
+
+  <div class="waybill reveal">
+    <div class="waybill-head">
+      <div>
+        <div class="wb-title">Export &amp; Haulage Manifest</div>
+        <div class="wb-sub mono">Mitekaro Group Limited · MGL</div>
+      </div>
+      <div class="stamp">MGL CERTIFIED</div>
+    </div>
+    <div class="wb-route">
+      <span><b>Iringa, TZ</b></span>
+      <span class="route-line"></span>
+      <span><b>Dar es Salaam Port</b></span>
+      <span class="route-line"></span>
+      <span>International buyers</span>
+    </div>
+    <table class="wb-table">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Cargo</th>
+          <th>Origin</th>
+          <th>Handling</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cargo-code">MZ-01</td>
+          <td>Maize</td>
+          <td>Iringa highlands</td>
+          <td><span class="cargo-tag">Bulk export</span></td>
+        </tr>
+        <tr>
+          <td class="cargo-code">RC-02</td>
+          <td>Rice</td>
+          <td>Southern Tanzania</td>
+          <td><span class="cargo-tag">Bagged export</span></td>
+        </tr>
+        <tr>
+          <td class="cargo-code">BN-03</td>
+          <td>Beans</td>
+          <td>Iringa &amp; Njombe</td>
+          <td><span class="cargo-tag">Bagged export</span></td>
+        </tr>
+        <tr>
+          <td class="cargo-code">PN-04</td>
+          <td>Pine timber</td>
+          <td>MGL plantations</td>
+          <td><span class="cargo-tag">Sawn &amp; round log</span></td>
+        </tr>
+        <tr>
+          <td class="cargo-code">EU-05</td>
+          <td>Eucalyptus timber</td>
+          <td>MGL plantations</td>
+          <td><span class="cargo-tag">Sawn &amp; round log</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="divisions" class="divisions">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Four lines of business</div>
+    <h2 class="section-title reveal">One group, moving the whole supply chain — not just a piece of it.</h2>
+    <p class="section-lede reveal">Most exporters hand their cargo off at the farm gate. MGL doesn't. We grow and source it, we sell it, we build the software the trade runs on, and we drive it to port ourselves.</p>
+
+    <div class="ledger">
+      <div class="ledger-row r1 reveal">
+        <div class="ledger-num">01</div>
+        <div class="ledger-title">Food Export
+          <span class="accent">Agriculture</span>
+        </div>
+        <div class="ledger-desc">Maize, rice, and beans sourced from Iringa and the surrounding highlands, graded and prepared for export to regional and international buyers.</div>
+        <div class="ledger-items">
+          <span class="item-chip">Maize</span>
+          <span class="item-chip">Rice</span>
+          <span class="item-chip">Beans</span>
+        </div>
+      </div>
+
+      <div class="ledger-row r2 reveal">
+        <div class="ledger-num">02</div>
+        <div class="ledger-title">Timber Export
+          <span class="accent">Forestry</span>
+        </div>
+        <div class="ledger-desc">Pine and eucalyptus grown on MGL-managed plantations, harvested and processed for export as sawn timber and round log, tracked from stand to shipment.</div>
+        <div class="ledger-items">
+          <span class="item-chip">Pine</span>
+          <span class="item-chip">Eucalyptus</span>
+        </div>
+      </div>
+
+      <div class="ledger-row r3 reveal">
+        <div class="ledger-num">03</div>
+        <div class="ledger-title">Technology
+          <span class="accent">Vuna Marketplace</span>
+        </div>
+        <div class="ledger-desc">MGL owns and operates Vuna Marketplace, an agricultural e-commerce platform connecting farmers and buyers directly — putting our trading floor online.</div>
+        <div class="ledger-items">
+          <span class="item-chip">vunamarketplace.com</span>
+        </div>
+      </div>
+
+      <div class="ledger-row r4 reveal">
+        <div class="ledger-num">04</div>
+        <div class="ledger-title">Logistics
+          <span class="accent">Haulage &amp; Fleet</span>
+        </div>
+        <div class="ledger-desc">Our own truck fleet moves cargo — ours and our clients' — from farm and forest to warehouse, port, and buyer, cutting out the middle carrier entirely.</div>
+        <div class="ledger-items">
+          <span class="item-chip">Own fleet</span>
+          <span class="item-chip">Freight for hire</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reach">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Where the cargo moves</div>
+    <h2 class="section-title reveal">Iringa is home base. The road runs to the coast — and past it.</h2>
+    <p class="section-lede reveal">Every sack of grain and every log leaves our own yard on our own trucks before it ever meets a port.</p>
+
+    <div class="reach-map reveal">
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-label">Iringa</div>
+        <div class="stop-sub mono">Farms · plantations · yard</div>
+      </div>
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-label">Dar es Salaam</div>
+        <div class="stop-sub mono">Port &amp; warehousing</div>
+      </div>
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-label">Global buyers</div>
+        <div class="stop-sub mono">Food &amp; timber markets</div>
+      </div>
+    </div>
+
+    <div class="fleet-stats reveal">
+      <div class="fleet-stat">
+        <div class="num">4</div>
+        <div class="lbl">Business divisions</div>
+      </div>
+      <div class="fleet-stat">
+        <div class="num">3</div>
+        <div class="lbl">Export crops — maize, rice, beans</div>
+      </div>
+      <div class="fleet-stat">
+        <div class="num">2</div>
+        <div class="lbl">Timber species — pine, eucalyptus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vuna" class="vuna">
+  <div class="vuna-inner">
+    <div class="reveal">
+      <div class="eyebrow">Our technology arm</div>
+      <div class="vuna-title">The marketplace we built<br><em>so the harvest doesn't</em><br>wait for a middleman.</div>
+      <p class="vuna-desc">Vuna Marketplace is MGL's agricultural e-commerce platform — built to connect farmers directly with buyers, the same way our export desk connects Iringa's harvest to the world.</p>
+      <a href="https://www.vunamarketplace.com" target="_blank" rel="noopener" class="vuna-link">Visit vunamarketplace.com →</a>
+    </div>
+    <div class="vuna-panel reveal">
+      <div class="vuna-panel-head">
+        <span>Platform</span>
+        <span>Owned by MGL</span>
+      </div>
+      <div class="vuna-feature">
+        <div class="vuna-feature-mark">→</div>
+        <div class="vuna-feature-text"><b>Direct listings</b><span>Farmers and suppliers list produce straight to buyers.</span></div>
+      </div>
+      <div class="vuna-feature">
+        <div class="vuna-feature-mark">→</div>
+        <div class="vuna-feature-text"><b>Agricultural focus</b><span>Built specifically around how farm produce is bought and sold.</span></div>
+      </div>
+      <div class="vuna-feature">
+        <div class="vuna-feature-mark">→</div>
+        <div class="vuna-feature-text"><b>Backed by MGL's supply chain</b><span>The same group that grows, exports, and hauls stands behind it.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-inner">
+    <div class="reveal">
+      <div class="eyebrow">About MGL</div>
+      <h2 class="section-title">A family enterprise that stayed close to the whole chain.</h2>
+      <p class="section-lede">Mitekaro Group Limited began in Iringa, Tanzania, and grew division by division — each one built to remove a step between our land and our buyers.</p>
+    </div>
+    <div class="about-list">
+      <div class="about-item reveal">
+        <div class="yr mono">FIELD</div>
+        <p><b>Agriculture &amp; forestry</b> — Maize, rice, and beans grown and sourced across Iringa; pine and eucalyptus raised on MGL-managed plantations for timber export.</p>
+      </div>
+      <div class="about-item reveal">
+        <div class="yr mono">DESK</div>
+        <p><b>Vuna Marketplace</b> — Our technology division, giving farmers and buyers a direct digital trading floor at vunamarketplace.com.</p>
+      </div>
+      <div class="about-item reveal">
+        <div class="yr mono">ROAD</div>
+        <p><b>Fleet &amp; logistics</b> — Our own trucks carry grain, beans, and timber from farm and forest to port, and haul freight for outside clients too.</p>
+      </div>
+      <div class="about-item reveal">
+        <div class="yr mono">PORT</div>
+        <p><b>Export desk</b> — Cargo is graded, documented, and shipped to regional and international buyers under the MGL name.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Get in touch</div>
+    <h2 class="section-title reveal">Ready to move some cargo?</h2>
+    <p class="section-lede reveal">Whether it's a container of rice, a load of pine, freight for hire, or a question about Vuna Marketplace — reach the desk below.</p>
+
+    <div class="contact-waybill reveal">
+      <div class="cw-head">
+        <h3>Contact Manifest</h3>
+        <span class="stamp">OPEN FOR BUSINESS</span>
+      </div>
+      <div class="cw-grid">
+        <div class="cw-cell">
+          <div class="k mono">Head office</div>
+          <div class="v">Iringa, Tanzania</div>
+        </div>
+        <div class="cw-cell">
+          <div class="k mono">Technology</div>
+          <div class="v"><a href="https://www.vunamarketplace.com" target="_blank" rel="noopener">vunamarketplace.com</a></div>
+        </div>
+        <div class="cw-cell">
+          <div class="k mono">Enquiries</div>
+          <div class="v"><a href="mailto:info@mitekarogroup.com">info@mitekarogroup.com</a></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>© 2026 Mitekaro Group Limited</span>
+      <span>Iringa · Tanzania</span>
+    </footer>
+  </div>
+</section>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  items.forEach(i=>io.observe(i));
+</script>
+
+</body>
+</html>
