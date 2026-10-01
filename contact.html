@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Raising Godly Sons</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Raising Godly Sons<span>Ministry</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Join the Community</a>
+</nav>
+
+<header class="page-head">
+  <div class="page-head-inner">
+    <span class="section-label">Contact</span>
+    <h1>Become part of the <em>community</em></h1>
+    <p class="lead">Join hundreds of mothers raising godly sons. Tell us a little about you and we'll welcome you in.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <h2>Sign up</h2>
+      <form id="join">
+        <div><label for="n">Full name</label><input id="n" type="text" required></div>
+        <div><label for="em">Email address</label><input id="em" type="email" required></div>
+        <div><label for="a">Age of your son(s)</label>
+          <select id="a" required>
+            <option value="" disabled selected>Choose one</option>
+            <option>0–6 years</option><option>7–12 years</option><option>13–18 years</option><option>Multiple age groups</option>
+          </select></div>
+        <div><label for="m">Prayer request or message (optional)</label><textarea id="m"></textarea></div>
+        <button type="submit" class="btn-gold">Sign me up</button>
+        <div class="msg" id="ok" role="status">Thank you for your interest! The community will be live soon, and we'll be in touch.</div>
+        <p class="note">By joining, you agree to receive weekly encouragement and updates from Raising Godly Sons Ministry. You can leave at any time.</p>
+      </form>
+    </div>
+    <div>
+      <h2>Other ways to connect</h2>
+      <div class="group"><h3>WhatsApp</h3><p>Join the community directly and we'll add you to the right groups.</p></div>
+      <a href="#" class="btn-wa" style="margin-bottom:1.5rem">Join on WhatsApp</a>
+      <div class="group"><h3>Instagram</h3><p><a href="https://instagram.com/raisinggodlysons_" target="_blank" rel="noopener" style="color:var(--olive)">@raisinggodlysons_</a></p></div>
+      <div class="group"><h3>Need prayer?</h3><p>Once you're in the community, post in the Prayer Requests group. We aim to respond within 6–12 hours.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div><div class="footer-logo">Raising Godly Sons</div><div class="footer-tagline">Equipping mothers. Strengthening sons. Building the Kingdom.</div></div>
+  <div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="roadmap.html">Roadmap</a><a href="community.html">Community</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a><a href="https://instagram.com/raisinggodlysons_" target="_blank" rel="noopener">Instagram</a></div>
+</footer>
+<script>
+document.getElementById('join').addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').style.display='block';this.reset();});
+</script>
+</body>
+</html>
