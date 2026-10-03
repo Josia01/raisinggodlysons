@@ -88,61 +88,39 @@ footer{background:var(--ink);color:rgba(255,255,255,.45);padding:3rem 5%;display
 <body>
 <nav>
   <a href="index.html" class="nav-logo">Raising Godly Sons<span>Ministry</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="roadmap.html">Roadmap</a></li>
-    <li><a href="community.html">Community</a></li>
-    <li><a href="resources.html">Resources</a></li>
-    <li><a href="contact.html" class="active">Contact</a></li>
-  </ul>
+  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="community.html">Community</a></li><li><a href="resources.html">Resources</a></li><li><a href="contact.html" class="active">Contact</a></li></ul>
   <button class="menu-btn" aria-label="Menu" aria-expanded="false">&#9776;</button>
   <a href="contact.html" class="nav-cta">Join the Community</a>
 </nav>
-
 <header class="page-head">
   <div class="page-head-inner">
     <span class="section-label">Contact</span>
     <h1>Become part of the <em>community</em></h1>
-    <p class="lead">Join hundreds of mothers raising godly sons. Tell us a little about you and we'll welcome you in.</p>
+    <p class="lead">Raising sons for God is hard, but we don't have to do it alone. Join us on WhatsApp and we'll welcome you in.</p>
   </div>
 </header>
 
 <section>
   <div class="wrap split">
     <div>
-      <h2>Sign up</h2>
-      <form id="join">
-        <div><label for="n">Full name</label><input id="n" type="text" required></div>
-        <div><label for="em">Email address</label><input id="em" type="email" required></div>
-        <div><label for="a">Age of your son(s)</label>
-          <select id="a" required>
-            <option value="" disabled selected>Choose one</option>
-            <option>0–6 years</option><option>7–12 years</option><option>13–18 years</option><option>Multiple age groups</option>
-          </select></div>
-        <div><label for="m">Prayer request or message (optional)</label><textarea id="m"></textarea></div>
-        <button type="submit" class="btn-gold">Sign me up</button>
-        <div class="msg" id="ok" role="status">Thank you for your interest! The community will be live soon, and we'll be in touch.</div>
-        <p class="note">By joining, you agree to receive weekly encouragement and updates from Raising Godly Sons Ministry. You can leave at any time.</p>
-      </form>
+      <h2>Join the community</h2>
+      <p>You are invited to be part of a community where Mamas believe their sons are called to greatness and God's purpose. Let's cover our sons in prayer and raise them for His glory.</p>
+      <a href="https://chat.whatsapp.com/DWIvNylSWuJKzpMsFcnPOR?mode=gi_t" class="btn-wa" target="_blank" rel="noopener">Join on WhatsApp</a>
+      <p class="note">By joining, you agree to our <a href="community.html" style="color:var(--olive)">community rules and expectations</a>.</p>
     </div>
     <div>
       <h2>Other ways to connect</h2>
-      <div class="group"><h3>WhatsApp</h3><p>Join the community directly and we'll add you to the right groups.</p></div>
-      <a href="#" class="btn-wa" style="margin-bottom:1.5rem">Join on WhatsApp</a>
       <div class="group"><h3>Instagram</h3><p><a href="https://instagram.com/raisinggodlysons_" target="_blank" rel="noopener" style="color:var(--olive)">@raisinggodlysons_</a></p></div>
-      <div class="group"><h3>Need prayer?</h3><p>Once you're in the community, post in the Prayer Requests group. We aim to respond within 6–12 hours.</p></div>
+      <div class="group"><h3>Need prayer?</h3><p>Our Prayer Request Form lets you choose whether your request is shared with first names only, shared anonymously, or kept private to admins. We pray either way.</p></div>
+      <div class="group"><h3>Our confidentiality promise</h3><p>What's shared here stays here. We pray; we don't gossip.</p></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div><div class="footer-logo">Raising Godly Sons</div><div class="footer-tagline">Equipping mothers. Strengthening sons. Building the Kingdom.</div></div>
-  <div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="roadmap.html">Roadmap</a><a href="community.html">Community</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a><a href="https://instagram.com/raisinggodlysons_" target="_blank" rel="noopener">Instagram</a></div>
+  <div><div class="footer-logo">Raising Godly Sons</div><div class="footer-tagline">Equipping mothers. Strengthening sons.</div></div>
+  <div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="community.html">Community</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a><a href="https://instagram.com/raisinggodlysons_" target="_blank" rel="noopener">Instagram</a></div>
 </footer>
-<script>
-document.getElementById('join').addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').style.display='block';this.reset();});
-</script>
 <script>document.querySelector('.menu-btn').addEventListener('click',function(){var o=document.querySelector('.nav-links').classList.toggle('open');this.setAttribute('aria-expanded',o)});</script>
 </body>
 </html>
